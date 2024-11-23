@@ -26,7 +26,7 @@ public class SecurityConfig {
    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
       return http
         .authorizeExchange(auth -> auth
-          .pathMatchers("/v1.0/auth/**").permitAll()
+          .pathMatchers("/v1.0/auth/**", "/token").permitAll()
           .pathMatchers("/v1.0/experiences/**").hasRole("ROLE_ADMIN")
           .pathMatchers("/v1.0/industries/**").hasRole("ROLE_ADMIN")
           .anyExchange().authenticated())
