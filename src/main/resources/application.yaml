@@ -1,0 +1,19 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: ${SECURITY_CLIENT_ID:api-gateway-service}
+            client-secret: ${SECURITY_CLIENT_SECRET:UJsta4FEAKnonWdmN8npUAhfg1nO7lKW}
+#            scope: openid
+#            authorization-grant-type: authorization_code
+            authorization-grant-type: ${SECURITY_GRANT_TYPE:password}
+#            redirect-uri: http://localhost:8080/login/oauth2/code/keycloak
+#            redirect-uri: http://ya.ru
+        provider:
+          keycloak:
+#            authorization-uri: http://ya.ru
+            token-uri: ${SECURITY_TOKEN_URI:http://localhost:9080/realms/javaguru/protocol/openid-connect/token}
+#            auth-server-url: http://localhost:8080/auth/
+            issuer-uri: ${SECURITY_ISSUER_URI:http://localhost:9080/realms/javaguru}
