@@ -28,7 +28,7 @@ public class ValidateTokenRoutePredicateFactory extends AbstractRoutePredicateFa
                HttpHeaders headers = exchange.getRequest().getHeaders();
                String token = headers.get("Authorization").get(0);
 
-               return jwtTokenService.verifySignature(token.substring("Bearer ".length()));
+               return jwtTokenService.validateToken(token.substring("Bearer ".length()));
             } catch (Exception e) {
                exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
                exchange.getResponse().setRawStatusCode(401);

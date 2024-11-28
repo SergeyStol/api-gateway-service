@@ -27,7 +27,7 @@ public class ValidateTokenGatewayFilterFactory
          try {
             HttpHeaders headers = exchange.getRequest().getHeaders();
             String token = headers.get("Authorization").get(0);
-            if (jwtTokenService.verifySignature(token.substring("Bearer ".length()))) {
+            if (jwtTokenService.validateToken(token.substring("Bearer ".length()))) {
                return chain.filter(exchange);
             } else {
                exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);

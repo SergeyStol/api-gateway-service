@@ -1,5 +1,6 @@
 package by.javaguru.apigatewayservice.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -11,8 +12,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfig {
 
+   @Value("${security.token-uri}")
+   private String tokenUri;
+
    @Bean
    public WebClient webClient() {
-      return WebClient.create("http://localhost:9080/realms/javaguru/protocol/openid-connect/token");
+      return WebClient.create(tokenUri);
    }
 }
