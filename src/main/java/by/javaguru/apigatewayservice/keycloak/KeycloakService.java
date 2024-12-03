@@ -1,6 +1,6 @@
 package by.javaguru.apigatewayservice.keycloak;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 import java.util.Map;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class KeycloakService {
    private final WebClient webClient;
    private final SecurityProperties securityProperties;
@@ -19,8 +19,8 @@ public class KeycloakService {
       return webClient.post()
           .uri(securityProperties.getTokenUri())
           .body(BodyInserters.fromFormData("grant_type", securityProperties.getGrantType())
-            .with("client_id", securityProperties.getClient().getId())
-            .with("client_secret", securityProperties.getClient().getSecret())
+            .with("client_id", securityProperties.getClientId())
+            .with("client_secret", securityProperties.getClientSecret())
             .with("username", login)
             .with("password", password))
           .retrieve()

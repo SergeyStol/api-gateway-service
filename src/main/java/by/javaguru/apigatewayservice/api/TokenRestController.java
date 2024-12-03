@@ -1,6 +1,7 @@
 package by.javaguru.apigatewayservice.api;
 
 import by.javaguru.apigatewayservice.keycloak.KeycloakService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +19,9 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/v1.0/auth")
+@RequiredArgsConstructor
 public class TokenRestController {
-
    private final KeycloakService keycloakService;
-
-   public TokenRestController(KeycloakService keycloakService) {
-      this.keycloakService = keycloakService;
-   }
 
    // GET /v1.0/auth/token -> 200 OK
    @GetMapping(path = "/token", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
